@@ -19,30 +19,58 @@ namespace Week1
         /// <returns></returns>
         public static int AddDigits(int n)
         {
-            // todo: do your magic here! :)
+            int sum = 0;
 
-            return 0;
+            char[] digits = n.ToString().ToCharArray();
+
+            for (int i = 0; i < digits.Length; i++)
+                sum += int.Parse(digits[i].ToString());
+
+            return sum;
         }
 
         public static int LargestNumber(int n)
         {
-            // todo: do your magic here! :)
+            //// Solution 1
+            ////string num = string.Empty;
+            ////for (int i = 0; i < n; i++)
+            ////    num += "9";
 
-            return 0;
+            ////return int.Parse(num);
+
+            // Solution 2
+            return (int) Math.Pow(10, n) - 1;
         }
 
         public static int OptimalEqualSplit(int n, int m)
         {
-            // todo: do your magic here! :)
-
-            return 0;
+            return m - (m % n);
         }
 
         public static int Persistence(int n)
         {
-            // todo: do your magic here! :)
+            int persistenceCount = 0;
 
-            return 0;
+            if (n < 10)
+                return persistenceCount;
+
+            var digits = n.ToString().ToCharArray();
+
+            double digitsProduct = 1;
+
+            for (int i = 0; i < digits.Length; i++)
+            {
+                digitsProduct *= int.Parse(digits[i].ToString());
+            }
+
+            persistenceCount++;
+
+            if (digitsProduct >= 10)
+            {
+                persistenceCount += Persistence((int)digitsProduct);
+            }
+
+            return persistenceCount;
         }
     }
 }
